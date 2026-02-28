@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: ${headerName}"></header>
+<table>
+    <thead>
+    <tr>
+        <th>Prenume</th>
+    </tr>
+    </thead>
+    <tr th:each="user : ${users}">
+        <td><a th:text="${user.prenume}" th:href="'/user/details?userId=' + ${user.id}"></a></td>
+    </tr>
+</table>
+
+</body>
+<style>
+    body {
+        background-image: url('/background.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;    }
+</style>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: ${headerName}"></header>
+
+<form method="post" th:action="@{/user/create/save}">
+
+    <div class="form-group">
+        <label> Prenume
+            <input th:field="${userDTO.prenume}" class="form-control">
+        </label>
+        <p class="error" th:errors = "${userDTO.prenume}"></p>
+    </div>
+    <div class="form-group">
+        <label> Nume
+            <input th:field="${userDTO.nume}" class="form-control">
+        </label>
+        <p class="error" th:errors = "${userDTO.nume}"></p>
+    </div>
+    <div class="form-group">
+        <label> Email
+            <input th:field="${userDTO.email}" class="form-control">
+        </label>
+        <p class="error" th:errors = "${userDTO.email}"></p>
+    </div>
+    <div class="form-group">
+        <label> Parola
+            <input type = "password" th:field="${userDTO.parola}" class="form-control">
+        </label>
+        <p class="error" th:errors = "${userDTO.parola}"></p>
+    </div>
+    <div class="form-group">
+        <label> Rol
+            <select th:field="${userDTO.rol}">
+                <option th:each="rol : ${roles}"
+                        th:value="${rol.id}"
+                        th:text="${rol.nume}"
+                ></option>
+            </select>
+        </label>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Adaugare utilizator" class="btn btn-success">
+    </div>
+</form>
+</body>
+<style>
+    body {
+        background-image: url('/background.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;    }
+</style>
+</html>

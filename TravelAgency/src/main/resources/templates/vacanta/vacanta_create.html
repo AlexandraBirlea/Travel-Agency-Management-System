@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: ${headerName}"></header>
+
+<form method="post" th:action="@{/vacanta/create/save}">
+    <div class="form-group">
+        <label>
+            <input type="hidden" th:value="${vacantaDTO.id}" name="id">
+        </label>
+    </div>
+    <div class="form-group">
+        <label> Destinatie
+            <input th:field="${vacantaDTO.destinatie}" class="form-control">
+        </label>
+        <p class="error" th:errors="${vacantaDTO.destinatie}"></p>
+    </div>
+    <div class="form-group">
+        <label> Durata
+            <input th:field="${vacantaDTO.durataZile}" class="form-control">
+        </label>
+        <p class="error" th:errors="${vacantaDTO.durataZile}"></p>
+    </div>
+    <div class="form-group">
+        <label> Locuri
+            <input th:field="${vacantaDTO.locuriDisponibile}" class="form-control">
+        </label>
+        <p class="error" th:errors="${vacantaDTO.locuriDisponibile}"></p>
+    </div>
+    <div class="form-group">
+        <label> Pret
+            <input th:field="${vacantaDTO.pret}" class="form-control">
+        </label>
+        <p class="error" th:errors="${vacantaDTO.pret}"></p>
+    </div>
+    <div class="form-group">
+        <label> Descriere
+            <input th:field="${vacantaDTO.descriere}" class="form-control">
+        </label>
+        <p class="error" th:errors="${vacantaDTO.descriere}"></p>
+    </div>
+    <div class="form-group">
+        <label> Tip Vacanta
+            <select th:field="${vacantaDTO.tipVacanta}">
+                <option th:each="tip : ${T(TravelAgency.TravelAgency.entities.TipVacanta).values()}"
+                        th:value="${tip}"
+                        th:text="${tip.nume}">
+                </option>
+            </select>
+        </label>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Adaugare Vacanta" class="btn btn-success">
+    </div>
+</form>
+</body>
+<style>
+    body {
+        background-image: url('/background.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;    }
+</style>
+</html>

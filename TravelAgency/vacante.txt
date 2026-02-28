@@ -1,0 +1,3 @@
+Vacanta: Croaziera in Maldive! in Maldive, durata: 14, pret: 1000.0 si locuri: 10
+Vacanta: Sejur in Franta! in Franta, durata: 7, pret: 400.0 si locuri: 6
+Vacanta: Excursie in Croatia! in Croatia, durata: 14, pret: 1000.0 si locuri: 4

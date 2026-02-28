@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body class="container">
+<header th:replace="fragments :: ${headerName}"></header>
+
+<table>
+    <thead>
+    <tr>
+        <th>Rezervari</th>
+    </tr>
+    </thead>
+    <tr th:each="rezervare : ${rezervari}">
+        <td>
+            <span style="display: none" th:text="${rezervare.id}" th:value="${rezervare.id}" id="idr"></span>
+        </td>
+        <td>
+            <a th:text="${rezervare.vacantaDTO.tipVacanta} + ' ' + ${rezervare.vacantaDTO.destinatie} + ' ' + ${rezervare.dataRezervare}"></a></td>
+        <td>
+            <button type="button" class="btn btn-danger" id="deleteRezervareBtn" th:onclick="'deleteRezervare(' + ${rezervare.id} + ')'">Delete</button>
+        </td>
+    </tr>
+</table>
+
+</body>
+<style>
+    body {
+        background-image: url('/background.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;    }
+</style>
+<script>
+
+    function deleteRezervare(idRezervare) {
+
+        $.ajax({
+            type: "POST",
+            url: "/rezervare/delete?id=" + idRezervare,
+            success: function() {
+                window.location.href = '/rezervare/rezervari';
+            },
+            error: function(error) {
+                console.error("Error deleting rezervare:", error);
+            }
+        });
+    }
+</script>
+</html>

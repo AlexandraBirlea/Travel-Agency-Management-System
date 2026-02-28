@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: ${headerName}"></header>
+<table>
+    <thead>
+    <tr>
+        <th>Vacante</th>
+    </tr>
+    </thead>
+    <tr th:each="vacanta : ${vacante}">
+        <td><a th:text="${vacanta.tipVacanta} + ' ' + ${vacanta.destinatie}"
+               th:href="'/vacanta/agent/show?vacantaId=' + ${vacanta.id}"></a></td>
+    </tr>
+</table>
+
+<form method="post" th:action="@{/vacanta/generate_file}">
+    <div class="form-group">
+        <label> Tip
+            <select name="fileType">
+                <option value="TEXT">TEXT</option>
+                <option value="PDF">PDF</option>
+                <option value="CSV">CSV</option>
+            </select>
+        </label>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Generare fisier" class="btn btn-success">
+    </div>
+</form>
+
+</body>
+<style>
+    body {
+        background-image: url('/background.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+</html>

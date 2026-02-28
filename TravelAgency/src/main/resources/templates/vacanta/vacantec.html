@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: ${headerName}"></header>
+<form action="/vacanta/cautare" method="GET">
+    <input type="text" name="search" placeholder="Introduceți căutarea...">
+    <button type="submit">Caută</button>
+</form>
+<form action="/vacanta/sortarePret" method="GET">
+    <label for="ordinePret">Sortează după preț:</label>
+    <select id="ordinePret" name="ordine">
+        <option value="asc">Crescător</option>
+        <option value="desc">Descrescător</option>
+    </select>
+    <button type="submit">Sortează</button>
+</form>
+
+<form action="/vacanta/sortareLocuri" method="GET">
+    <label for="ordineLocuri">Sortează după numărul de locuri:</label>
+    <select id="ordineLocuri" name="ordine">
+        <option value="asc">Crescător</option>
+        <option value="desc">Descrescător</option>
+    </select>
+    <button type="submit">Sortează</button>
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th>Vacante</th>
+    </tr>
+    </thead>
+    <tr th:each="vacanta : ${vacante}">
+        <td><a th:text="${vacanta.tipVacanta} + ' ' + ${vacanta.destinatie}" th:href="'/vacanta/client/show?vacantaId=' + ${vacanta.id}"></a></td>
+    </tr>
+</table>
+
+</body>
+<style>
+    body {
+        background-image: url('/background.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;    }
+</style>
+
+<form action="/vacanta/filtrare" method="get">
+    <label for="tip_vacanta">Tip Vacanta:</label>
+    <select id="tip_vacanta" name="tip_vacanta">
+        <option value="SEJUR">Sejur</option>
+        <option value="EXCURSIE">Excursie</option>
+        <option value="CROAZIERA">Croaziera</option>
+    </select>
+    <button type="submit">Filtrează</button>
+</form>
+</html>
